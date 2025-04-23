@@ -84,10 +84,10 @@ Audience members (students not presenting) can rate presenters on:
 Clone the repo:
 
 - git clone https://github.com/CSE3901-SP25-11309/project4-group2.git
-- cd project4-group2
+- cd instructor_webpage
 - bundle install
 - rails db:migrate
-- rails db:seed (allows our premade emails and presenter data to work)
+- rails db:seed (allows the premade emails and presenter data to work)
 - rails server
 - Visit http://localhost:3000 in your browser
 - Log in using one of the student/instructor emails above
