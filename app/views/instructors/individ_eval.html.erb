@@ -1,0 +1,17 @@
+
+<!DOCTYPE html>
+<html>
+<body>
+
+
+<h1>Evaluation for <%= @evaluation&.student&.name || "Unknown Student" %></h1>
+
+
+<p><%= link_to "← Back to Instructor Dashboard", instructors_dashboard_path %></p>
+
+<%= form_with url: destroy_user_session_path, method: :delete do %>
+  <%= submit_tag "Log out", style: "background: none; border: none; color: blue; text-decoration: underline; cursor: pointer;" %>
+<% end %>
+
+</body>
+</html>

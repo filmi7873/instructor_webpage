@@ -1,0 +1,45 @@
+
+<h1>Evaluation Summary: <%= @event.title %></h1>
+<p>Presentation date: <%= @event.date ? @event.date.strftime("%m/%d/%Y") : "Date not set" %></p>
+
+<h1>Evaluations</h1>
+<h3>Presentation: <%= @event.title %></h3>
+
+<% @presenters.each do |ep| %>
+  <div class="presenter‑grade">
+    <h3>Presenter: <%= ep.user.name %></h3>
+    <%= form_with url: update_grade_path(ep), method: :patch, local: true do |f| %>
+      <%= f.select :grade, options_for_select(%w[A A‑ A B B‑ C C‑ D F], ep.grade), include_blank: "— assign grade —" %>
+      <%= f.submit "Save" %>
+    <% end %>
+  </div>
+<% end %>
+
+<table border="1" cellspacing="0" cellpadding="8">
+  <thead>
+    <tr>
+      <th>Student Name</th>
+      <th>Clarity</th>
+      <th>Organization</th>
+      <th>Technical</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @evaluations.each do |eval| %>
+      <tr>
+        <td><%= eval.student.name %></td>
+        <td><%= "★" * eval.clarity.to_i %></td>
+        <td><%= "★" * eval.organization.to_i %></td>
+        <td><%= "★" * eval.technical.to_i %></td>
+        <td><%= eval.comments %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p><%= link_to "← Back to Instructor Dashboard", instructors_dashboard_path %></p>
+
+<%= form_with url: destroy_user_session_path, method: :delete do %>
+  <%= submit_tag "Log out", style: "background: none; border: none; color: blue; text-decoration: underline; cursor: pointer;" %>
+<% end %>

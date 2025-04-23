@@ -1,0 +1,32 @@
+<h1>Class Roster</h1>
+
+<%= form_with url: save_grades_path, method: :post, local: true do %>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Grade</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @students.each do |student| %>
+        <tr>
+          <td><%= student.name %></td>
+          <td><%= student.email %></td>
+          <td>
+            <%= hidden_field_tag "grades[#{student.id}][student_id]", student.id %>
+            <%= select_tag "grades[#{student.id}][grade]",
+                options_for_select(["--", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D", "F"],
+                selected: student.grade),
+                class: "grade-dropdown" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= submit_tag "Save Grades", class: "button-primary", style: "margin-top: 1rem;" %>
+<% end %>
+
+<p><%= link_to "← Back to Instructor Dashboard", instructors_dashboard_path %></p>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2><%= current_user.name %>'s Dashboard</h2>
+
+<div class="dashboard-section">
+<h3>Your Feedback</h3>
+<table border="1" cellspacing="0" cellpadding="8">
+  <thead>
+    <tr>
+      <th>Presentation Title</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @presented_events.any? %>
+      <% @presented_events.each do |event| %>
+        <tr>
+          <td><%= event.title %></td>
+          <td>
+            <%= link_to "View Feedback", presenter_feed_path(event_id: event.id) %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan="2">No presentations found</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+<div class="dashboard-section">
+  <h3>Evaluation Forms</h3>
+  <table border="1" cellspacing="0" cellpadding="8">
+      <thead>
+        <tr>
+          <th>Presentation Title</th>
+          <th>Presenters</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @events.any? %>
+            <% @events.each do |event| %>
+              <tr>
+                <td><%= event.title %></td>
+                <td><%= event.presenters.map(&:name).join(", ") %></td>
+                <td>
+                  <%= link_to "Submit Evaluation", 
+                      new_student_evaluation_path(event_id: event.id) %>
+                </td>
+              </tr>
+            <% end %>
+          <% else %>
+            <tr>
+              <td colspan="2">No pending evaluations</td>
+            </tr>
+          <% end %>
+      </tbody>
+  </table>
+</div>
+
+<%= form_with url: destroy_user_session_path, method: :delete do %>
+  <%= submit_tag "Log out", style: "background: none; border: none; color: blue; text-decoration: underline; cursor: pointer;" %>
+<% end %>
+</body>
+</html>

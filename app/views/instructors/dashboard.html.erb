@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+  <h2>Instructor Dashboard</h2>
+<div class="dashboard-header" style="display: flex; flex-direction: column; gap: 0.5rem; max-width: 200px;">
+  <%= link_to "＋ Create Event", create_event_path, class: "button-primary" %>
+  <%= link_to "Roster", roster_path, class: "button-secondary" %>
+</div>
+
+<h3>Upcoming Events</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Date</th>
+      <th>Actions</th>  
+      <th>Presenters</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @events.each do |event| %>
+    <tr>
+      <td><%= event.title %></td>
+      <td><%= event.date.present? ? event.date.strftime("%B %d, %Y") : "Date not set" %></td>
+
+      <td>
+        <%= link_to "View Feedback", all_eval_path(event_id: event.id) %> |
+        <%= form_with url: delete_event_path(event), method: :delete, style: "display:inline;" do %>
+          <%= submit_tag "Delete", 
+              data: { confirm: "Are you sure?" }, 
+              style: "background:none; border:none; color:red; cursor:pointer; text-decoration: underline;" %>
+        <% end %>
+      </td>
+
+      <td><%= event.presenters.map(&:name).join(", ") %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
+<%= form_with url: destroy_user_session_path, method: :delete do %>
+  <%= submit_tag "Log out", class: "logout-button" %>
+<% end %>
+</body>
+</html>

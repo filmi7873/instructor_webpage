@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Feedback for <%= @event.title %></h1>
+
+<h2>
+  <strong>Grade:</strong>
+  <%= @presenter_grade.present? ? @presenter_grade : "Pending" %>
+</h2>
+
+<div class="feedback-section">
+    <h2>Student Evaluations</h2>
+    <table border="1" cellspacing="0" cellpadding="8">
+      <thead>
+        <tr>
+          <th>Student Name</th>
+          <th>Clarity</th>
+          <th>Organization</th>
+          <th>Technical</th>
+          <th>Comments</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @evaluations.each do |eval| %>
+          <tr>
+            <td><%= eval.student.name %></td>
+            <td><%= "★" * eval.clarity.to_i %></td>
+            <td><%= "★" * eval.organization.to_i %></td>
+            <td><%= "★" * eval.technical.to_i %></td>
+            <td><%= eval.comments %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+<p><%= link_to "← Back to Student Dashboard", students_dashboard_path %></p>
+
+<%= form_with url: destroy_user_session_path, method: :delete do %>
+  <%= submit_tag "Log out", style: "background: none; border: none; color: blue; text-decoration: underline; cursor: pointer;" %>
+<% end %>
+
+</body>
+</html>

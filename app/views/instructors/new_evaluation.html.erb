@@ -1,0 +1,50 @@
+<h2>Create New Evaluation</h2>
+
+<%= form_with model: @evaluation, url: create_evaluation_path, method: :post, local: true do |f| %>
+  <% if @evaluation.errors.any? %>
+    <div class="error-messages">
+      <h3><%= pluralize(@evaluation.errors.count, "error") %> prohibited this evaluation from being saved:</h3>
+      <ul>
+        <% @evaluation.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :event_id, "Select Event" %>
+    <%= f.collection_select :event_id, @events, :id, :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :student_id, "Select Student" %>
+    <%= f.collection_select :student_id, @students, :id, :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :clarity, "Clarity (1-5)" %>
+    <%= f.number_field :clarity, in: 1..5 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :organization, "Organization (1-5)" %>
+    <%= f.number_field :organization, in: 1..5 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :technical, "Technical Content (1-5)" %>
+    <%= f.number_field :technical, in: 1..5 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :comments %>
+    <%= f.text_area :comments %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Create Evaluation" %>
+  </div>
+<% end %>
+
+<%= link_to "Back to Dashboard", instructors_dashboard_path %>

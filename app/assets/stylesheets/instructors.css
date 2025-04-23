@@ -1,0 +1,129 @@
+h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #222;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 2rem;
+  }
+  
+  ul li {
+    margin: 0.5rem 0;
+  }
+  
+  ul li a {
+    color: #3b82f6;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  ul li a:hover {
+    text-decoration: underline;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  th, td {
+    padding: 12px;
+    border: 1px solid #ccc;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f8f8f8;
+    font-weight: bold;
+  }
+  
+  td a {
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  td a:hover {
+    text-decoration: underline;
+  }
+  
+  .logout {
+    margin-top: 2rem;
+    display: inline-block;
+    color: #3b82f6;
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: 0.95rem;
+  }
+
+  .logout-button {
+    background: none;
+    border: none;
+    color: #3b82f6;
+    font-size: 0.95rem;
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-top: 1.5rem;
+  }  
+
+  .button-primary {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    background-color: #3b82f6;
+    color: white;
+    text-decoration: none;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .button-primary:hover {
+    background-color: #3b82f6;
+  }
+
+  .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .dashboard-header .button-primary {
+    margin: 0;
+  }
+  
+  .dashboard-header ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .button-secondary {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    background-color: #3b82f6;
+    color: white;
+    text-decoration: none;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .button-secondary:hover {
+    background-color: #3b82f6;
+  }
+  

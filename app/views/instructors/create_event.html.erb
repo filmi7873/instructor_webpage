@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Create a New Event</h1>
+
+<% if @event && @event.errors.any? %>
+  <div style="color: red; margin-bottom: 20px;">
+    <h3><%= pluralize(@event.errors.count, "error") %> prevented this event from being saved:</h3>
+    <ul>
+      <% @event.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with model: @event, url: events_path do |f| %>
+  <div>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+
+  <div>
+    <%= f.label :date %><br>
+    <%= f.date_field :date %>
+  </div>
+
+  <div>
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+
+  <div>
+    <%= f.label :presenter_ids, "Select Presenter(s)" %><br>
+    <%= f.collection_select :presenter_ids, User.all, :id, :email, { prompt: "Choose presenter(s)" }, { multiple: true, size: 5 } %>
+  </div>
+
+  <button type="button" onclick="selectAllPresenters()">Select All</button>
+
+  <script>
+    function selectAllPresenters() {
+      const select = document.querySelector('select[multiple]');
+      for (const option of select.options) {
+        option.selected = true;
+      }
+    }
+  </script>
+
+  <%= f.submit "Create Event" %>
+<% end %>
+<p><%= link_to "← Back to Instructor Dashboard", instructors_dashboard_path %></p>
+
+<%= form_with url: destroy_user_session_path, method: :delete do %>
+  <%= submit_tag "Log out", style: "background: none; border: none; color: blue; text-decoration: underline; cursor: pointer;" %>
+<% end %>
+
+</body>
+</html>

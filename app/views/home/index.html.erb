@@ -1,0 +1,19 @@
+<h1>Scarlet Canvas Home Page</h1>
+
+<% if user_signed_in? %>
+  <p>Hi <strong><%= current_user.name %></strong>! You’re logged in.</p>
+
+  <% if current_user.admin? %>
+    <%= link_to "Return to Dashboard", instructors_dashboard_path, class: "button" %>
+  <% else %>
+    <%= link_to "Return to Dashboard", students_dashboard_path, class: "button" %>
+  <% end %>
+
+ 
+
+  <%= form_with url: destroy_user_session_path, method: :delete do %>
+    <%= submit_tag "Log out", style: "background: none; border: none; color: blue; text-decoration: underline; cursor: pointer;" %>
+  <% end %>
+<% else %>
+  <p>Please <%= link_to "Log in", new_user_session_path %> to continue.</p>
+<% end %>

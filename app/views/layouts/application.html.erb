@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Scarlet Canvas</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  </head>
+
+  <body>
+    <% if flash[:notice] %>
+    <div id="flash-banner" style="background-color: #d1e7dd; color: #0f5132; border: 1px solid #badbcc; padding: 1rem; margin-bottom: 1rem; border-radius: 0.25rem; position: relative;">
+      <span><%= flash[:notice] %></span>
+      <button onclick="document.getElementById('flash-banner').style.display='none';" 
+              style="position: absolute; top: 8px; right: 12px; background: none; border: none; font-size: 1.2rem; color: #0f5132; cursor: pointer;">
+        &times;
+      </button>
+    </div>
+  <% end %>
+
+
+    <%= yield %>
+    <%= csrf_meta_tags %>
+  </body>
+</html>

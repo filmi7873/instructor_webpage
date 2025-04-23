@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Create a New Event</h1>
+
+<%= form_with model: @event, url: events_path do |f| %>
+  <div>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+
+  <div>
+    <%= f.label :date %><br>
+    <%= f.date_field :date %>
+  </div>
+
+  <div>
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+
+  <%= f.submit "Create Event" %>
+<% end %>
+<p><%= link_to "← Back to Instructor Dashboard", instructors_dashboard_path %></p>
+
+<%= form_with url: destroy_user_session_path, method: :delete do %>
+  <%= submit_tag "Log out", style: "background: none; border: none; color: blue; text-decoration: underline; cursor: pointer;" %>
+<% end %>
+
+</body>
+</html>
