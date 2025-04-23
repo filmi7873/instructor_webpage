@@ -1,4 +1,4 @@
-# project4-group2
+**Presentation Evaluation Platform (Ruby on Rails)**
 
 **Project Description:**
 - This is a presentation feedback platform designed for classroom use. It supports two roles: Instructors and Students.
